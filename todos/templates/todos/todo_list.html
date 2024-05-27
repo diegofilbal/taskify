@@ -28,9 +28,18 @@
                     <td>{{ todo.deadline }}</td>
                     <td>{{ todo.finished_at|default:"-" }}</td>
                     <td>
-                        <a href="{% url 'mark_as_done' pk=todo.pk %}" class="btn btn-primary btn-sm">Done</a>
-                        <a href="{% url 'todo_update' pk=todo.pk %}" class="btn btn-secondary btn-sm">Edit</a>
-                        <a href="{% url 'todo_delete' pk=todo.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="{% url 'mark_as_done' pk=todo.pk %}"
+                           class="btn btn-primary btn-sm {% if todo.finished_at %}disabled{% endif %}">
+                            Done
+                        </a>
+                        <a href="{% url 'todo_update' pk=todo.pk %}"
+                           class="btn btn-secondary btn-sm {% if todo.finished_at %}disabled{% endif %}">
+                            Edit
+                        </a>
+                        <a href="{% url 'todo_delete' pk=todo.pk %}"
+                           class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
                     </td>
                 </tr>
             {% endfor %}
