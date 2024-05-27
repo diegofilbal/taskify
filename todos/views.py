@@ -1,5 +1,3 @@
-from datetime import date
-
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
 from .models import Todo
 from django.urls import reverse_lazy
@@ -30,6 +28,5 @@ class TodoDeleteView(DeleteView):
 class MarkAsDoneView(View):
     def get(self, request, pk):
         todo = get_object_or_404(Todo, pk=pk)
-        todo.finished_at = date.today()
-        todo.save()
+        todo.mark_as_done()
         return redirect("todo_list")
