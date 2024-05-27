@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Confirm Delete Task
+{% endblock %}
+
+{% block content %}
+    <h1>Confirm Delete Task</h1>
+
+    <p>Are you sure you want to delete the task "<strong>{{ todo.title }}</strong>"?</p>
+
+    <form class="mt-4" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'todo_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}
